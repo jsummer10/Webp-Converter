@@ -20,7 +20,8 @@ def get_arguments():
 
 def convert_webp(filename, new_file, verbose=False):
     """ Perform the webp file conversion """
-    output = subprocess.run(['cwebp', '-q', '80', filename, '-o', new_file + '.webp'], capture_output=True)
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    output = subprocess.run([os.path.join(script_dir, 'cwebp'), '-q', '80', filename, '-o', new_file + '.webp'], capture_output=True)
     
     if verbose and output.returncode == 0:
         print(new_file + '.webp created')
